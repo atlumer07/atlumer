@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="D:\Jake Remulta\.Net Prac Tutorials\WebPublished" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="Web.config" publishTime="09/20/2013 14:29:59" />
+    <file relUrl="images/smedia/googleplus.png" publishTime="09/17/2013 18:23:56" />
+    <file relUrl="images/glyphicons-halflings-white.png" publishTime="09/17/2013 10:51:28" />
+    <file relUrl="css/bootstrap.css" publishTime="09/18/2013 16:49:45" />
+    <file relUrl="images/smedia/twitter.png" publishTime="09/17/2013 18:17:19" />
+    <file relUrl="images/Rachel Anne Daquis.jpg" publishTime="09/17/2013 17:38:10" />
+    <file relUrl="bin/WebExam.dll" publishTime="09/20/2013 14:28:27" />
+    <file relUrl="css/layout.css" publishTime="09/20/2013 15:06:40" />
+    <file relUrl="images/bgExambarTitle.jpg" publishTime="09/19/2013 15:49:39" />
+    <file relUrl="images/smedia/youtube.png" publishTime="09/17/2013 18:20:35" />
+    <file relUrl="js/DateTime.js" publishTime="09/19/2013 17:18:50" />
+    <file relUrl="css/bootstrap-responsive.css" publishTime="09/16/2013 12:29:15" />
+    <file relUrl="images/smedia/imgbook/mid.jpg" publishTime="09/19/2013 13:47:35" />
+    <file relUrl="images/bgSidebarTitle.jpg" publishTime="09/17/2013 16:20:03" />
+    <file relUrl="images/smedia/imgbook/top.jpg" publishTime="09/19/2013 13:47:35" />
+    <file relUrl="images/infobar.jpg" publishTime="09/16/2013 15:06:57" />
+    <file relUrl="js/jquery-1.9.1.js" publishTime="09/16/2013 12:29:29" />
+    <file relUrl="images/bgTopbarNote.jpg" publishTime="09/19/2013 12:41:26" />
+    <file relUrl="Exam.aspx" publishTime="09/20/2013 15:24:34" />
+    <file relUrl="images/glyphicons-halflings.png" publishTime="09/17/2013 10:51:28" />
+    <file relUrl="images/smedia/fb.png" publishTime="09/17/2013 18:10:36" />
+    <file relUrl="bin/WebExam.pdb" publishTime="09/20/2013 14:28:27" />
+    <file relUrl="master.Master" publishTime="09/19/2013 17:56:04" />
+    <file relUrl="default.aspx" publishTime="09/19/2013 17:29:54" />
+    <file relUrl="js/bootstrap.js" publishTime="09/16/2013 12:29:29" />
+  </publishProfile>
+</publishData>

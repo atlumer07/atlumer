@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AtlumerWebExamModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="AtlumerWebExamModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="AtlumerWebExamModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblCategory" EntityType="AtlumerWebExamModel.Store.tblCategory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblChoices" EntityType="AtlumerWebExamModel.Store.tblChoices" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblQuestions" EntityType="AtlumerWebExamModel.Store.tblQuestions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblScoreBoard" EntityType="AtlumerWebExamModel.Store.tblScoreBoard" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblSystemErrorLog" EntityType="AtlumerWebExamModel.Store.tblSystemErrorLog" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblUserInfo" EntityType="AtlumerWebExamModel.Store.tblUserInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblUserLogin" EntityType="AtlumerWebExamModel.Store.tblUserLogin" store:Type="Tables" store:Schema="dbo" store:Name="tblUserLogin">
+      <DefiningQuery>SELECT 
+      [tblUserLogin].[userID] AS [userID], 
+      [tblUserLogin].[userPwd] AS [userPwd], 
+      [tblUserLogin].[userType] AS [userType], 
+      [tblUserLogin].[isActive] AS [isActive], 
+      [tblUserLogin].[pwdLastUpdate] AS [pwdLastUpdate], 
+      [tblUserLogin].[lastLogin] AS [lastLogin]
+      FROM [dbo].[tblUserLogin] AS [tblUserLogin]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_tblChoices_tblQuestions" Association="AtlumerWebExamModel.Store.FK_tblChoices_tblQuestions">
+      <End Role="tblQuestions" EntitySet="tblQuestions" />
+      <End Role="tblChoices" EntitySet="tblChoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblQuestions_tblCategory" Association="AtlumerWebExamModel.Store.FK_tblQuestions_tblCategory">
+      <End Role="tblCategory" EntitySet="tblCategory" />
+      <End Role="tblQuestions" EntitySet="tblQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblScoreBoard_tblUserInfo" Association="AtlumerWebExamModel.Store.FK_tblScoreBoard_tblUserInfo">
+      <End Role="tblUserInfo" EntitySet="tblUserInfo" />
+      <End Role="tblScoreBoard" EntitySet="tblScoreBoard" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSystemErrorLog_tblUserInfo" Association="AtlumerWebExamModel.Store.FK_tblSystemErrorLog_tblUserInfo">
+      <End Role="tblUserInfo" EntitySet="tblUserInfo" />
+      <End Role="tblSystemErrorLog" EntitySet="tblSystemErrorLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserLogin_tblUserInfo" Association="AtlumerWebExamModel.Store.FK_tblUserLogin_tblUserInfo">
+      <End Role="tblUserInfo" EntitySet="tblUserInfo" />
+      <End Role="tblUserLogin" EntitySet="tblUserLogin" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblCategory">
+    <Key>
+      <PropertyRef Name="categoryID" />
+    </Key>
+    <Property Name="categoryID" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="description" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="availability" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblChoices">
+    <Key>
+      <PropertyRef Name="choicesID" />
+    </Key>
+    <Property Name="choicesID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="qID" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="correctAnswer" Type="bit" />
+    <Property Name="cText" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="createdBy" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblQuestions">
+    <Key>
+      <PropertyRef Name="qID" />
+    </Key>
+    <Property Name="qID" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="categoryID" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="qContent" Type="varchar" Nullable="false" MaxLength="500" />
+    <Property Name="availability" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblScoreBoard">
+    <Key>
+      <PropertyRef Name="scoreID" />
+    </Key>
+    <Property Name="scoreID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="set" Type="int" Nullable="false" />
+    <Property Name="totalMistake" Type="int" />
+    <Property Name="totalCorrect" Type="int" />
+    <Property Name="totalItems" Type="int" Nullable="false" />
+    <Property Name="DateTaken" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblSystemErrorLog">
+    <Key>
+      <PropertyRef Name="errID" />
+    </Key>
+    <Property Name="errID" Type="int" Nullable="false" />
+    <Property Name="userID" Type="varchar" MaxLength="10" />
+    <Property Name="errWebPage" Type="varchar" MaxLength="50" />
+    <Property Name="errFunction" Type="varchar" MaxLength="50" />
+    <Property Name="errMessage" Type="varchar" MaxLength="4000" />
+    <Property Name="errDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUserInfo">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="userType" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="firstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="lastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="middleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="150" />
+    <Property Name="contact" Type="nvarchar" MaxLength="20" />
+    <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="dateRegistered" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'AtlumerWebExam.dbo.tblUserLogin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="tblUserLogin">
+    <Key>
+      <PropertyRef Name="userID" />
+      <PropertyRef Name="userPwd" />
+      <PropertyRef Name="userType" />
+      <PropertyRef Name="isActive" />
+      <PropertyRef Name="pwdLastUpdate" />
+      <PropertyRef Name="lastLogin" />
+    </Key>
+    <Property Name="userID" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="userPwd" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="userType" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="pwdLastUpdate" Type="datetime" Nullable="false" />
+    <Property Name="lastLogin" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tblChoices_tblQuestions">
+    <End Role="tblQuestions" Type="AtlumerWebExamModel.Store.tblQuestions" Multiplicity="1" />
+    <End Role="tblChoices" Type="AtlumerWebExamModel.Store.tblChoices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblQuestions">
+        <PropertyRef Name="qID" />
+      </Principal>
+      <Dependent Role="tblChoices">
+        <PropertyRef Name="qID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblQuestions_tblCategory">
+    <End Role="tblCategory" Type="AtlumerWebExamModel.Store.tblCategory" Multiplicity="1" />
+    <End Role="tblQuestions" Type="AtlumerWebExamModel.Store.tblQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCategory">
+        <PropertyRef Name="categoryID" />
+      </Principal>
+      <Dependent Role="tblQuestions">
+        <PropertyRef Name="categoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblScoreBoard_tblUserInfo">
+    <End Role="tblUserInfo" Type="AtlumerWebExamModel.Store.tblUserInfo" Multiplicity="1" />
+    <End Role="tblScoreBoard" Type="AtlumerWebExamModel.Store.tblScoreBoard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUserInfo">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="tblScoreBoard">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSystemErrorLog_tblUserInfo">
+    <End Role="tblUserInfo" Type="AtlumerWebExamModel.Store.tblUserInfo" Multiplicity="0..1" />
+    <End Role="tblSystemErrorLog" Type="AtlumerWebExamModel.Store.tblSystemErrorLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUserInfo">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="tblSystemErrorLog">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserLogin_tblUserInfo">
+    <End Role="tblUserInfo" Type="AtlumerWebExamModel.Store.tblUserInfo" Multiplicity="1" />
+    <End Role="tblUserLogin" Type="AtlumerWebExamModel.Store.tblUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUserInfo">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="tblUserLogin">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+</Schema>

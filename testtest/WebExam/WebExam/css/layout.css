@@ -1,0 +1,270 @@
+﻿*
+{
+    margin: 0;
+    padding: 0;
+}
+html
+{
+    height: 100%;
+}
+body
+{
+    font: 12px/18px Tahoma, Verdana, sans-serif;
+    background-color: #e9e9e9;
+    font-size: 10pt;
+    margin: 25px 0 15px;
+    width: 100%;
+    height: 100%;
+}
+p
+{
+    margin: 0 0 18px;
+}
+img
+{
+    border: none;
+}
+input
+{
+    vertical-align: middle;
+}
+#wrapper
+{
+    width: 100%;
+    margin: 0 auto;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+}
+
+
+/* Header
+-----------------------------------------------------------------------------*/
+#header1
+{
+    width: 100%;
+    height: 100px;
+    background: #444;
+    display:block;
+}
+
+#headerTop
+{
+    width: 1150px;
+    height: 65px;
+    margin: 0 auto;
+}
+
+#headerContent
+{
+    width: 1150px;
+    padding: 0 0 30px 0;
+    margin: 0 auto;
+    height: auto;
+}
+
+#headerSearch
+{
+    float: right;
+    height: 35px;
+    width: 250px;
+}
+
+#headerTitle
+{
+    width: 869px;
+    height: 32px;
+    background: #0396da;
+    float: left;
+    padding-top: 2px;
+    border-top: 1px solid #999;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+     background-image: url('../images/bgExambarTitle.jpg');
+}
+
+/* Middle
+-----------------------------------------------------------------------------*/
+#middle
+{
+    width: 1150px;
+    padding: 0 0 30px 0;
+    margin: 0 auto;
+}
+#middle:after
+{
+    content: '';
+    clear: both;
+    display: table;
+}
+#container
+{
+    background: #fff;
+    width: 870px;
+    float: left;
+    -webkit-box-shadow: 20px 20px 15px #b6b6b6;
+    -moz-box-shadow: 20px 20px 15px #b6b6b6;
+    box-shadow: 2px 4px 4px #b6b6b6;
+}
+#content
+{
+    padding: 25px;
+}
+
+
+/* Sidebar Right
+-----------------------------------------------------------------------------*/
+#sideRight
+{
+    float: right;
+    margin: 10px 0px auto auto;
+    width: 250px;
+}
+
+.box-right
+{
+    background: #fff;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    clear: both;
+    margin: 0 0 15px 0;
+    box-shadow: -1px 1px 3px #999;
+}
+
+.box-right h1
+{
+    background: #eeeeee;
+    background-image: url('../images/bgSidebarTitle.jpg');
+    -moz-border-top-left-radius: 4px;
+    -moz-border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    -webkit-border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    padding: 0 10px;
+    font-size: 14px;
+    border-bottom: 1pt solid #e6e6e6;
+    line-height: 26px;
+    color: #fff;
+}
+
+.sidebarList
+{
+    padding-bottom: 10px;
+}
+
+
+/* Footer
+-----------------------------------------------------------------------------*/
+#footer
+{
+    width: 100%;
+    margin: 0 auto;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+}
+
+#footerContent
+{
+    width: 1120px;
+    margin: 0 auto;
+}
+
+#footerLeft
+{
+    width: 870px;
+    float: left;
+}
+
+#footerRight
+{
+    float: right;
+    margin-right: 0px;
+    width: 250px;
+    background: #FFACAA;
+}
+
+#divHRLine
+{
+    border-top: 1px solid #777;
+    width: 920px;
+    margin: 15px;
+}
+
+
+/*Nav footer Start-----------------------------------------*/
+.naviFooter
+{
+    font-size: 8pt;
+    text-align: center;
+    padding: 0px;
+}
+.naviFooter td
+{
+    font-family: Verdana,Sans-Serif;
+    font-size: 7pt;
+}
+
+.copyRight
+{
+    padding: 5px 0px 10px 0px;
+}
+
+a.NaviBut
+{
+    border-right: 1px solid #b6b6b6;
+    padding: 0px 12px;
+    text-decoration: none;
+    color: #636363;
+}
+a.NaviBut_Left
+{
+    border-right: 1px solid #b6b6b6;
+    padding: 0px 12px;
+    text-decoration: none;
+    color: #636363;
+}
+a.NaviBut_Right
+{
+    padding: 0px 12px;
+    text-decoration: none;
+    color: #636363;
+}
+
+a.NaviBut:hover, a.NaviBut_Right:hover, a.NaviBut_Left:hover
+{
+    text-decoration: underline;
+}
+
+/*Nav footer End-----------------------------------------*/
+
+
+/*login Page Start-----------------------------------------*/
+
+.loginBox
+{
+    width: 820px;
+    height: 300px;
+    margin: auto 0;
+}
+.loginBoxLeft
+{
+    width: 340px;
+    height: 300px;
+    float: left;
+    margin: auto 0;
+    padding-right: 10px;
+    padding-left: 10px;
+    -webkit-box-shadow: 15px 15px 10px #b6b6b6;
+    -moz-box-shadow: 15px 15px 10px #b6b6b6;
+    box-shadow: 1px 2px 2px #b6b6b6;
+}
+.loginBoxRight
+{
+    width: 430px;
+    height: 300px;
+    float: right;
+    margin: auto auto auto -50px;
+}

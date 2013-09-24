@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AtlumerWebExamModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="AtlumerWebExamEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="AtlumerWebExamModel.sysdiagram" />
+    <EntitySet Name="tblCategories" EntityType="AtlumerWebExamModel.tblCategory" />
+    <EntitySet Name="tblChoices" EntityType="AtlumerWebExamModel.tblChoice" />
+    <EntitySet Name="tblQuestions" EntityType="AtlumerWebExamModel.tblQuestion" />
+    <EntitySet Name="tblScoreBoards" EntityType="AtlumerWebExamModel.tblScoreBoard" />
+    <EntitySet Name="tblSystemErrorLogs" EntityType="AtlumerWebExamModel.tblSystemErrorLog" />
+    <EntitySet Name="tblUserInfoes" EntityType="AtlumerWebExamModel.tblUserInfo" />
+    <AssociationSet Name="FK_tblQuestions_tblCategory" Association="AtlumerWebExamModel.FK_tblQuestions_tblCategory">
+      <End Role="tblCategory" EntitySet="tblCategories" />
+      <End Role="tblQuestions" EntitySet="tblQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblChoices_tblQuestions" Association="AtlumerWebExamModel.FK_tblChoices_tblQuestions">
+      <End Role="tblQuestions" EntitySet="tblQuestions" />
+      <End Role="tblChoices" EntitySet="tblChoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblScoreBoard_tblUserInfo" Association="AtlumerWebExamModel.FK_tblScoreBoard_tblUserInfo">
+      <End Role="tblUserInfo" EntitySet="tblUserInfoes" />
+      <End Role="tblScoreBoard" EntitySet="tblScoreBoards" />
+    </AssociationSet>
+    <EntitySet Name="tblUserLogins" EntityType="AtlumerWebExamModel.tblUserLogin" />
+    <AssociationSet Name="FK_tblSystemErrorLog_tblUserInfo" Association="AtlumerWebExamModel.FK_tblSystemErrorLog_tblUserInfo">
+      <End Role="tblUserInfo" EntitySet="tblUserInfoes" />
+      <End Role="tblSystemErrorLog" EntitySet="tblSystemErrorLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserLogin_tblUserInfo" Association="AtlumerWebExamModel.FK_tblUserLogin_tblUserInfo">
+      <End Role="tblUserInfo" EntitySet="tblUserInfoes" />
+      <End Role="tblUserLogin" EntitySet="tblUserLogins" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblCategory">
+    <Key>
+      <PropertyRef Name="categoryID" />
+    </Key>
+    <Property Name="categoryID" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="availability" Type="Boolean" Nullable="false" />
+    <Property Name="createdBy" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="tblQuestions" Relationship="AtlumerWebExamModel.FK_tblQuestions_tblCategory" FromRole="tblCategory" ToRole="tblQuestions" />
+  </EntityType>
+  <EntityType Name="tblChoice">
+    <Key>
+      <PropertyRef Name="choicesID" />
+    </Key>
+    <Property Name="choicesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="qID" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="correctAnswer" Type="Boolean" />
+    <Property Name="cText" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="createdBy" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="tblQuestion" Relationship="AtlumerWebExamModel.FK_tblChoices_tblQuestions" FromRole="tblChoices" ToRole="tblQuestions" />
+  </EntityType>
+  <EntityType Name="tblQuestion">
+    <Key>
+      <PropertyRef Name="qID" />
+    </Key>
+    <Property Name="qID" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="categoryID" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="qContent" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="availability" Type="Boolean" Nullable="false" />
+    <Property Name="createdBy" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="tblCategory" Relationship="AtlumerWebExamModel.FK_tblQuestions_tblCategory" FromRole="tblQuestions" ToRole="tblCategory" />
+    <NavigationProperty Name="tblChoices" Relationship="AtlumerWebExamModel.FK_tblChoices_tblQuestions" FromRole="tblQuestions" ToRole="tblChoices" />
+  </EntityType>
+  <EntityType Name="tblScoreBoard">
+    <Key>
+      <PropertyRef Name="scoreID" />
+    </Key>
+    <Property Name="scoreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="set" Type="Int32" Nullable="false" />
+    <Property Name="totalMistake" Type="Int32" />
+    <Property Name="totalCorrect" Type="Int32" />
+    <Property Name="totalItems" Type="Int32" Nullable="false" />
+    <Property Name="DateTaken" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="tblUserInfo" Relationship="AtlumerWebExamModel.FK_tblScoreBoard_tblUserInfo" FromRole="tblScoreBoard" ToRole="tblUserInfo" />
+  </EntityType>
+  <EntityType Name="tblSystemErrorLog">
+    <Key>
+      <PropertyRef Name="errID" />
+    </Key>
+    <Property Name="errID" Type="Int32" Nullable="false" />
+    <Property Name="userID" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="errWebPage" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="errFunction" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="errMessage" Type="String" MaxLength="4000" Unicode="false" FixedLength="false" />
+    <Property Name="errDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="tblUserInfo" Relationship="AtlumerWebExamModel.FK_tblSystemErrorLog_tblUserInfo" FromRole="tblSystemErrorLog" ToRole="tblUserInfo" />
+  </EntityType>
+  <EntityType Name="tblUserInfo">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="userType" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="firstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="lastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="middleName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="address" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="contact" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="dateRegistered" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="tblScoreBoards" Relationship="AtlumerWebExamModel.FK_tblScoreBoard_tblUserInfo" FromRole="tblUserInfo" ToRole="tblScoreBoard" />
+    <NavigationProperty Name="tblSystemErrorLogs" Relationship="AtlumerWebExamModel.FK_tblSystemErrorLog_tblUserInfo" FromRole="tblUserInfo" ToRole="tblSystemErrorLog" />
+    <NavigationProperty Name="tblUserLogins" Relationship="AtlumerWebExamModel.FK_tblUserLogin_tblUserInfo" FromRole="tblUserInfo" ToRole="tblUserLogin" />
+  </EntityType>
+  <Association Name="FK_tblQuestions_tblCategory">
+    <End Role="tblCategory" Type="AtlumerWebExamModel.tblCategory" Multiplicity="1" />
+    <End Role="tblQuestions" Type="AtlumerWebExamModel.tblQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCategory">
+        <PropertyRef Name="categoryID" />
+      </Principal>
+      <Dependent Role="tblQuestions">
+        <PropertyRef Name="categoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblChoices_tblQuestions">
+    <End Role="tblQuestions" Type="AtlumerWebExamModel.tblQuestion" Multiplicity="1" />
+    <End Role="tblChoices" Type="AtlumerWebExamModel.tblChoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblQuestions">
+        <PropertyRef Name="qID" />
+      </Principal>
+      <Dependent Role="tblChoices">
+        <PropertyRef Name="qID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblScoreBoard_tblUserInfo">
+    <End Role="tblUserInfo" Type="AtlumerWebExamModel.tblUserInfo" Multiplicity="1" />
+    <End Role="tblScoreBoard" Type="AtlumerWebExamModel.tblScoreBoard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUserInfo">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="tblScoreBoard">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tblUserLogin">
+    <Key>
+      <PropertyRef Name="userID" />
+      <PropertyRef Name="userPwd" />
+      <PropertyRef Name="userType" />
+      <PropertyRef Name="isActive" />
+      <PropertyRef Name="pwdLastUpdate" />
+      <PropertyRef Name="lastLogin" />
+    </Key>
+    <Property Type="String" Name="userID" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="userPwd" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="userType" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+    <Property Type="DateTime" Name="pwdLastUpdate" Nullable="false" />
+    <Property Type="DateTime" Name="lastLogin" Nullable="false" />
+    <NavigationProperty Name="tblUserInfo" Relationship="AtlumerWebExamModel.FK_tblUserLogin_tblUserInfo" FromRole="tblUserLogin" ToRole="tblUserInfo" />
+  </EntityType>
+  <Association Name="FK_tblSystemErrorLog_tblUserInfo">
+    <End Type="AtlumerWebExamModel.tblUserInfo" Role="tblUserInfo" Multiplicity="0..1" />
+    <End Type="AtlumerWebExamModel.tblSystemErrorLog" Role="tblSystemErrorLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUserInfo">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="tblSystemErrorLog">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserLogin_tblUserInfo">
+    <End Type="AtlumerWebExamModel.tblUserInfo" Role="tblUserInfo" Multiplicity="1" />
+    <End Type="AtlumerWebExamModel.tblUserLogin" Role="tblUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUserInfo">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="tblUserLogin">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
